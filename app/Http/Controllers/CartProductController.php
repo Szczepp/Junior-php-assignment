@@ -10,8 +10,8 @@ class CartProductController extends Controller
 {
     public function index(Cart $cart, $id)
     {
-        $totalPrice = ($cart::withSum('products', 'price')
-            ->findorFail($id))
+        $totalPrice = $cart::withSum('products', 'price')
+            ->findorFail($id)
             ->products_sum_price;
         $cartProducts = $cart::findorFail($id)->load('products');
         $cartProducts['totalPrice'] = $totalPrice;
