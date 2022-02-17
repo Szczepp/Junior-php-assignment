@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\Product;
-use http\Env\Response;
 use Illuminate\Http\Request;
 
-class ProductController
+class ProductController extends Controller
 {
     public function index()
     {
@@ -14,11 +13,9 @@ class ProductController
 
     public function show($id)
     {
-        $product = Product::find($id);
-        if ($product!= []) {
-            return response()->json($product, 200);
-        }
-        return response(null, 404);
+        $product = Product::findOrFail($id);
+
+        return response()->json($product, 200);
     }
 
     public function store(Request $request)
@@ -27,6 +24,8 @@ class ProductController
             'title' => 'required|unique:products',
             'price' => 'required'
             ]);
+
+        $product = Product::create($request->all());
 
         return response()->json($request, 201);
     }
