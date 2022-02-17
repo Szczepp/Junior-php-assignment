@@ -1,6 +1,6 @@
 # Junior PHP Assignment 
 
-This is a simple application allowing adding products to the cart. It contains 2 APIs.
+This is a simple application that allows adding products to the cart. It contains 2 APIs.
 
 ### API 1:
 * Add a new product
